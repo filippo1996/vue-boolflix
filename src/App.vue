@@ -1,17 +1,51 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header/>
+    <main>
+      <ul>
+        <li v-for="(item, index) in itemsSearchFilms" :key="index">{{item.original_title}}</li>
+      </ul>
+    </main>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from '@/components/Header.vue';
+import axios from '@/axios.js';
+import config from '@/data/config.js';
+import {eventBus} from '@/main.js';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Header
+  },
+  data(){
+    return {
+      itemsSearchFilms: []
+    }
+  },
+  created(){
+    this.search();
+  },
+  methods: {
+    search(){
+      eventBus.$on('keywords', async str =>{
+        if(!str){
+          this.itemsSearchFilms = [];
+          return;
+        }        
+        const www = config.the_movie_db;
+        const addPath = www.add_path;
+        const params = {
+          api_key: process.env.VUE_APP_API_KEY,
+          query: str
+        }
+        const response = await axios(www.path_v3 + addPath.search_movie, params);
+        //console.log(response.data.results);
+        this.itemsSearchFilms = response.data.results;
+      });
+    }
   }
 }
 </script>

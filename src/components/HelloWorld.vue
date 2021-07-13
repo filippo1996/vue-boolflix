@@ -31,10 +31,23 @@
 </template>
 
 <script>
+import axios from '@/axios.js';
+import config from '@/data/config.js';
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  async created() {
+    const www = config.the_movie_db;
+    const addPath = www.add_path;
+    const params = {
+      api_key: process.env.VUE_APP_API_KEY,
+      query: 'harry potter'
+    }
+    const response = await axios(www.path_v3 + addPath.search_movie, params);
+    console.log(response);
   }
 }
 </script>
