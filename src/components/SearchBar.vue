@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input type="search" v-model="keywords" @keyup="search" placeholder="cerca il tuo contenuto">
+        <input type="search" v-model="keywords" @keyup="search" placeholder="Cerca... minimo 3 caratteri">
     </div>
 </template>
 

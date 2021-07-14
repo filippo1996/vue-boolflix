@@ -7,7 +7,8 @@ export default {
         add_path:{
             list: 'list/',
             list_id: 1,
-            search_movie: 'search/movie'
+            search_movie: 'search/movie',
+            search_tv: 'search/tv'
         }
     }
 }
