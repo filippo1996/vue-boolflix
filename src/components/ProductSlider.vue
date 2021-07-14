@@ -1,8 +1,9 @@
 <template>
     <div>
+        <h2>{{titleCategory}}</h2>
         <ul>
             <li v-for="(movie, index) in movies" :key="index">
-                <Card :dataMovie="movie"/>
+                <Card :data="movie"/>
             </li>
         </ul>
     </div>
@@ -18,6 +19,7 @@ export default {
     },
     props: {
         movies: Array,
+        titleCategory: String
     }
 }
 </script>

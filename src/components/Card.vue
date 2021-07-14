@@ -1,10 +1,10 @@
 <template>
     <div>
-        {{dataMovie.title}}<br>
-        {{dataMovie.original_title}}<br>
-        <img :src="fileName(dataMovie.original_language)" :alt="'bandiera ' + dataMovie.original_language"><br>
-        {{dataMovie.vote_average}}<br>
-        {{dataMovie.original_name}}<br>
+        {{data.title || data.name}}<br>
+        {{data.original_title || data.original_name}}<br>
+        <img :src="fileName(data.original_language)" :alt="'bandiera ' + data.original_language"><br>
+        {{data.vote_average}}<br>
+        {{data.original_name}}<br>
     </div>
 </template>
 
@@ -12,7 +12,7 @@
 export default {
     name: 'Card',
     props: {
-        dataMovie: Object
+        data: Object
     },
     methods: {
         fileName(name){
