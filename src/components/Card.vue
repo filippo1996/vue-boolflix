@@ -6,12 +6,18 @@
         <img :src="fileName(data.original_language)" :alt="'bandiera ' + data.original_language"><br>
         {{data.vote_average}}<br>
         {{data.original_name}}<br>
+        <StarRating :data="data"/>
     </div>
 </template>
 
 <script>
+import StarRating from './StarRating.vue';
+
 export default {
     name: 'Card',
+    components: {
+        StarRating
+    },
     props: {
         data: Object
     },

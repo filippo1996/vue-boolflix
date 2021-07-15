@@ -1,11 +1,14 @@
 <template>
     <div>
-        <h2>{{titleCategory}}</h2>
-        <ul>
-            <li v-for="(movie, index) in movies" :key="index">
-                <Card :data="movie"/>
-            </li>
-        </ul>
+        <div v-if="items.length">
+            <h2>{{titleCategory}}</h2>
+            <ul>
+                <li v-for="(movie, index) in items" :key="index">
+                    <Card :data="movie"/>
+                </li>
+            </ul>
+        </div>
+        <h3 v-else-if="serchStatus">Nessun contenuto trovato, effettua una ricerca diversa</h3>
     </div>
 </template>
 
@@ -18,8 +21,9 @@ export default {
         Card
     },
     props: {
-        movies: Array,
-        titleCategory: String
+        items: Array,
+        titleCategory: String,
+        serchStatus: Boolean
     }
 }
 </script>

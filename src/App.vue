@@ -2,10 +2,7 @@
   <div id="app">
     <Header/>
     <main>
-      <div v-if="searchAll.length">
-        <ProductSlider :movies="searchAll" titleCategory="Ricerca Film e Serie TV"/>
-      </div>
-      <h3 v-else-if="searchActive">Nessun contenuto trovato, effettua una ricerca diversa</h3>
+      <ProductSlider :items="searchAll" titleCategory="Ricerca Film e Serie TV" :serchStatus="searchActive"/>
     </main>
   </div>
 </template>
@@ -29,7 +26,7 @@ export default {
       searchAll: []
     }
   },
-  created(){
+  mounted(){
     eventBus.$on('keywords', async str =>{
       if(!str || str.length < 3){
         this.searchActive = false;
@@ -61,12 +58,5 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import './style/common.scss';
 </style>
