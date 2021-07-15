@@ -1,15 +1,15 @@
 <template>
   <div id="app">
     <Header/>
-    <main>
-      <ProductSlider :items="searchAll" titleCategory="Ricerca Film e Serie TV" :serchStatus="searchActive"/>
+    <main class="container">
+      <SearchView v-if="searchActive" :items="searchAll" title="Ricerca Film e Serie TV"/>
     </main>
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header.vue';
-import ProductSlider from '@/components/ProductSlider.vue'
+import SearchView from '@/components/SearchView.vue'
 import axios from '@/axios.js';
 import config from '@/data/config.js';
 import {eventBus} from '@/main.js';
@@ -18,7 +18,7 @@ export default {
   name: 'App',
   components: {
     Header,
-    ProductSlider
+    SearchView
   },
   data(){
     return {
@@ -34,7 +34,8 @@ export default {
       }
       const params = {
         api_key: process.env.VUE_APP_API_KEY,
-        query: str
+        query: str,
+        language: 'it-IT'
       }
       //we get the list of wanted movies
       const itemsSearchFilms = await this.search('path_v3', 'search_movie', params);
